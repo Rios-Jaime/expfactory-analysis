@@ -32,7 +32,6 @@ setup(
                         'kabuki',
                         'hddm',
                         'numpy==1.11.1',
-                        'numexpr',
                         'pymc',
                         'scipy',
                         'seaborn',
