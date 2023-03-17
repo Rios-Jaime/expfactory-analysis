@@ -57,7 +57,7 @@ class Result:
                     field_df.index = range(0,field_df.shape[0])
                     field_df.columns = ["%s_%s" %(field,x) for x in field_df.columns.tolist()]
                     self.data = pandas.concat([self.data,field_df],axis=1)
-                except as e:
+                except Exception as e:
                     print(e)
                     self.data[field] = tmp[field]                   
             else:
