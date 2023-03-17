@@ -1,7 +1,6 @@
 '''
 expanalysis/results.py: part of expanalysis package
 results class
-
 '''
 from expanalysis.maths import check_numeric
 from expanalysis.testing import validate_result
@@ -29,8 +28,8 @@ class Result:
         # If access token is provided, parse immediately
         if access_token != None:
             self.json = get_results(url=url, access_token=access_token, last_url=last_url)
-            self.results_to_df(fields)
-            self.clean_results(filters)
+            # self.results_to_df(fields)
+            # self.clean_results(filters)
     
     def load_results(self,json_file):
         '''load_results will load a saved json object result
@@ -58,7 +57,8 @@ class Result:
                     field_df.index = range(0,field_df.shape[0])
                     field_df.columns = ["%s_%s" %(field,x) for x in field_df.columns.tolist()]
                     self.data = pandas.concat([self.data,field_df],axis=1)
-                except:
+                except as e:
+                    print(e)
                     self.data[field] = tmp[field]                   
             else:
                  self.data[field] = tmp[field]                   
@@ -190,7 +190,6 @@ def get_result_fields():
 def get_filters():
     '''get_filters returns standard filters for results dataframe.
     ::note
-
        the keys of the dictionary should be the column names to apply filters to
        Each should be associated with a dictionary with the following fields:
        
@@ -204,5 +203,3 @@ def get_filters():
                           "operator":"==",
                           "value":True}}
     return filters
-
-    
